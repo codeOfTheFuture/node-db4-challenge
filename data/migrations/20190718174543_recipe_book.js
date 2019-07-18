@@ -44,8 +44,12 @@ exports.up = function(knex) {
         .interger('step_number')
         .unsigned()
         .notNullable()
-        .unique();
-      tbl.string('instruction', 128).notNullable();
+        .unique()
+        .onDelete('RESTRICT');
+      tbl
+        .string('instruction', 128)
+        .notNullable()
+        .onDelete('RESTRICT');
       tbl
         .interger('recipe_id')
         .unsigned()
