@@ -5,8 +5,7 @@ exports.up = function(knex) {
     tbl
       .integer('step_number')
       .unsigned()
-      .notNullable()
-      .unique();
+      .notNullable();
 
     tbl.string('instruction', 128).notNullable();
 
@@ -15,9 +14,7 @@ exports.up = function(knex) {
       .unsigned()
       .notNullable()
       .references('id')
-      .inTable('recipes')
-      .onDelete('CASCADE')
-      .onUpdate('CASCADE');
+      .inTable('recipes');
   });
 };
 
