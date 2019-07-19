@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id/ingredients', async (req, res) => {
   const {
     params: { id },
   } = req;
@@ -25,6 +25,20 @@ router.get('/:id', async (req, res) => {
   } catch (error) {
     res.status(500).json({
       message: 'Server was unable to get shopping list',
+    });
+  }
+});
+
+router.get('/:id/steps', async (req, res) => {
+  const {
+    params: { id },
+  } = req;
+  try {
+    const steps = await Recipes.getInstructions(id);
+    res.status(200).json(steps);
+  } catch (error) {
+    res.status(500).json({
+      message: 'Server was unable to get the list of steps for the recipe',
     });
   }
 });
